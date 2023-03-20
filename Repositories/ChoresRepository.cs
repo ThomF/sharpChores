@@ -19,4 +19,22 @@ namespace sharpChores.Repositories;
         {
             return dbChores;
         }
+        internal Chore GetOneChore(int id)
+        {
+            Chore chore = dbChores.Find(chore => chore.Id == id);
+            return chore;
+        }
+
+        internal Chore CreateChore(Chore choreData)
+        {
+            choreData.Id = dbChores[dbChores.Count - 1].Id + 1;
+            dbChores.Add(new Chore(choreData.Name, choreData.Time , choreData.Location, choreData.Id));
+            return choreData;
+        }
+
+        internal bool RemoveChore(int choreId)
+        {
+            int count = dbChores.RemoveAll(chore => chore.Id == choreId);
+            return count > 0;
+        }
     }

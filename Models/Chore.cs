@@ -21,9 +21,9 @@ namespace sharpChores.Models
         public string Location { get; set; }
         public bool Done { get; private set; } = false;
 
-        // public void Done()
-        // {
-        // this.Done = true;
-        // }
+        public void Finished()
+        {
+        this.Done = true;
+        }
     }
 }

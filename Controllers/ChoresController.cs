@@ -28,4 +28,60 @@ namespace sharpChores.Controllers;
             return BadRequest(e.Message);
             }
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<Chore> GetOneChore(int id)
+        {
+            try 
+            {
+            Chore chore = _choresService.GetOneChore(id);
+            return Ok(chore);
+            }
+            catch (Exception e)
+            {
+            return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult<Chore> CreateChore([FromBody] Chore choreData)
+        {
+            try 
+            {
+            Chore chore = _choresService.CreateChore(choreData);
+            return Ok(chore);
+            }
+            catch (Exception e)
+            {
+            return BadRequest(e.Message);
+            }
+        }
+
+        [HttpDelete("{choreId}")]
+        public ActionResult<string> RemoveChore(int choreId)
+        {
+        try 
+        {
+        string message = _choresService.RemoveChore(choreId);
+            return Ok(message);
+        }
+        catch (Exception e)
+        {
+        return BadRequest(e.Message);
+        }
+        }
+
+        [HttpPut("{id}/done")]
+        public ActionResult<Chore> FinishChore(int id)
+        {
+            try 
+            {
+            Chore chore = _choresService.FinishChore(id);
+            return Ok(chore);
+            }
+            catch (Exception e)
+            {
+            return BadRequest(e.Message);
+            }
+        }
     }
